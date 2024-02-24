@@ -1,13 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://c14e02km2lcal"]
+[gd_scene load_steps=4 format=3 uid="uid://c14e02km2lcal"]
 
 [ext_resource type="Texture2D" uid="uid://bumrj0ln6xmdp" path="res://Image/blob-Draft-1684574689985.png" id="1_bw4iw"]
 [ext_resource type="Script" path="res://Script/GamePlayer/GameController.cs" id="2_8s2jq"]
+[ext_resource type="Script" path="res://Script/GamePlayer/GuideLine/LineRenderer.cs" id="3_al4ma"]
 
 [node name="GamePlayer" type="Node2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+rotation = -6.28319
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(885, 1004)
+position = Vector2(-76, 432)
 texture = ExtResource("1_bw4iw")
 
 [node name="GameController" type="Node" parent="."]
 script = ExtResource("2_8s2jq")
+
+[node name="LineRenderer" type="Node" parent="GameController"]
+script = ExtResource("3_al4ma")

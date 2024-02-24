@@ -4,19 +4,19 @@ using Godot;
 
 namespace DremuGodot.Script.GamePlayer.GuideLine;
 
-public class LineRenderer : Node
+public partial class LineRenderer : Node
 {
     
     private Vector3[] _points;
     public Queue<Vector2> PointsQueue = new Queue<Vector2>();
     public int pointNumber = 100;
     public static double speed;
-    private double DefaultSpeed=1;
+    private double DefaultSpeed=-2;
     private int n=0;
     
     // 创建 Line2D 节点
     Line2D line = new Line2D();
-    
+    private Transform2D tran = new Transform2D();
     
     /// <summary>
     /// 将点加载到队列中，只可以调用一次，以节省内存空间
@@ -33,6 +33,7 @@ public class LineRenderer : Node
         for (float i = 0; i <= 1; i+=0.01f)
         {
             Vector2 point = Bezier.BezierCurve(p0,p1,p2,p3,i);
+            // point.Y = -point.Y;
             PointsQueue.Enqueue(point);
         }
     }
@@ -52,9 +53,9 @@ public class LineRenderer : Node
             float y = points[i].Y;
             //n*delta以调整下落速度
             points[i] = new Vector2(points[i].X, y - (float)(n*(speed>0&&speed!=null?speed:DefaultSpeed)));
-            // Debug.Log(points[i]);
+            GD.Print(points[i]);
             //TODO:当y==0时，将坐标传出到判定点上
-            if (points[i].Y<0)
+            if (points[i].Y>0)
             {
                 PointsQueue.Dequeue();
             }
@@ -75,18 +76,21 @@ public class LineRenderer : Node
         line.TextureMode = Line2D.LineTextureMode.Tile; // 纹理模式为平铺
         // line.Texture = GD.Load<Texture>("res://line_texture.png"); // 加载纹理资源
         line.Points = new Vector2[100];
+        
+        AddPoints(new Vector2(0,0),new Vector2(100,-1000),new Vector2(1000,-10),new Vector2(1000,-1000));
         // 添加折线的点
-        line.SetPointPosition(0,new Vector2(100f, 100f)); // 第一个点
-        line.SetPointPosition(1,new Vector2(200f, 150f)); // 第二个点
-        line.SetPointPosition(2,new Vector2(300f, 100f)); // 第三个点
+        // line.SetPointPosition(0,new Vector2(100f, 100f)); // 第一个点
+        // line.SetPointPosition(1,new Vector2(200f, 150f)); // 第二个点
+        // line.SetPointPosition(2,new Vector2(300f, 100f)); // 第三个点
 
         // 将 Line2D 节点添加到场景中
         AddChild(line);
+        
     }
 
     // 在 _Process 函数中更新折线的点
     public override void _Process(double delta)
     {
-
+        RenderPoints();
     }
 }
