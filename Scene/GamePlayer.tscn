@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c14e02km2lcal"]
+
+[ext_resource type="Texture2D" uid="uid://bumrj0ln6xmdp" path="res://Image/blob-Draft-1684574689985.png" id="1_bw4iw"]
+[ext_resource type="Script" path="res://Script/GamePlayer/GameController.cs" id="2_8s2jq"]
+
+[node name="GamePlayer" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(885, 1004)
+texture = ExtResource("1_bw4iw")
+
+[node name="GameController" type="Node" parent="."]
+script = ExtResource("2_8s2jq")
