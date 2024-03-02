@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using DremuGodot.Script.UniLib;
 using Godot;
 
 namespace DremuGodot.Script.GamePlayer.GuideLine;
@@ -53,7 +54,7 @@ public partial class LineRenderer : Node
             float y = points[i].Y;
             //n*delta以调整下落速度
             points[i] = new Vector2(points[i].X, y - (float)(n*(speed>0&&speed!=null?speed:DefaultSpeed)));
-            GD.Print(points[i]);
+            // GD.Print(points[i]);
             //TODO:当y==0时，将坐标传出到判定点上
             if (points[i].Y>0)
             {
@@ -77,6 +78,7 @@ public partial class LineRenderer : Node
         // line.Texture = GD.Load<Texture>("res://line_texture.png"); // 加载纹理资源
         line.Points = new Vector2[100];
         
+        GD.Print(MathToGame.GetCoordinate(new Vector2(0, 100)));
         AddPoints(new Vector2(0,0),new Vector2(100,-1000),new Vector2(1000,-10),new Vector2(1000,-1000));
         // 添加折线的点
         // line.SetPointPosition(0,new Vector2(100f, 100f)); // 第一个点
