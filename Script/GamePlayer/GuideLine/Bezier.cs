@@ -16,6 +16,7 @@ namespace DremuGodot.Script.GamePlayer.GuideLine
         public static Vector2 BezierCurve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float t)
         {
             // 计算系数
+            // 使用帕斯卡三角
             float a = (1 - t) * (1 - t) * (1 - t);
             float b = 3 * t * (1 - t) * (1 - t);
             float c = 3 * t * t * (1 - t);
