@@ -5,7 +5,7 @@ using Godot;
 
 namespace DremuGodot.Script.GamePlayer.GuideLine;
 
-public partial class LineRenderer : Node
+public partial class LineRenderer : Line2D
 {
 	private Vector3[] _points;
 	public Queue<Vector2> PointsQueue = new Queue<Vector2>();
@@ -13,22 +13,25 @@ public partial class LineRenderer : Node
 	public static double speed;
 	private double DefaultSpeed = -2;
 	private int n = 0;
-
-	// 创建 Line2D 节点
-	Line2D line = new Line2D();
-	private Transform2D tran = new Transform2D();
-
+	public List<List<Vector2>> ThisCurves;
+	
+	public LineRenderer()
+	{
+		// 初始化一些属性或字段
+	}
 	/// <summary>
 	/// 创建引导线（由多个三阶贝赛尔曲线构成）
 	/// </summary>
 	/// <param name="Curves">由两个List嵌套构成一个是曲线的List，一个是曲线的四个控制点</param>
-	public void CreateGuideLine(List<List<Vector2>> Curves)
+	///
+	public void SetLineRenderer(List<List<Vector2>> Curves)
 	{
+		
 		foreach (List<Vector2> curve in Curves)
 		{
 			AddPoints(curve[0], curve[1], curve[2], curve[3]);
 		}
-		
+		// GD.Print(PointsQueue.Count());
 	}
 
 
@@ -66,14 +69,15 @@ public partial class LineRenderer : Node
 			float y = points[i].Y;
 			//n*delta以调整下落速度
 			points[i] = new Vector2(points[i].X, y - (float)(n * (speed > 0 && speed != null ? speed : DefaultSpeed)));
-			//TODO:当y==0时，将坐标传出到判定点上
+			
 			if (points[i].Y > 0)
 			{
 				PointsQueue.Dequeue();
 			}
 		}
 
-		line.Points = points.ToArray();
+		Points = points.ToArray();
+		
 		n++;
 	}
 
@@ -81,17 +85,14 @@ public partial class LineRenderer : Node
 	public override void _Ready()
 	{
 		// 设置折线的属性
-		line.Width = 10f; // 宽度为 10 像素
-		line.DefaultColor = new Color(1f, 0f, 0f); // 颜色为红色
-		line.TextureMode = Line2D.LineTextureMode.Tile; // 纹理模式为平铺
+		Width = 10f; // 宽度为 10 像素
+		DefaultColor = new Color(1f, 0f, 0f); // 颜色为红色
+		TextureMode = LineTextureMode.Tile; // 纹理模式为平铺
 		// line.Texture = GD.Load<Texture>("res://line_texture.png"); // 加载纹理资源
-		line.Points = new Vector2[100];
+		Points = new Vector2[100];
 
 		
 		/*AddPoints(new Vector2(0, 0), new Vector2(100, -1000), new Vector2(1000, -10), new Vector2(1000, -1000));*/
-
-		// 将 Line2D 节点添加到场景中
-		AddChild(line);
 	}
 
 	// 在 _Process 函数中更新折线的点

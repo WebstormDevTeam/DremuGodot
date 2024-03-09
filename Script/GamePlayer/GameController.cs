@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using DremuGodot.Script.GamePlayer.GuideLine;
 using Godot.Collections;
 using Newtonsoft.Json;
 
@@ -39,15 +40,26 @@ using Newtonsoft.Json;
 
 namespace DremuGodot.Script.GamePlayer
 {
-	public partial class GameController : Node
+	public partial class GameController : Node2D
 	{
+		private List<List<Vector2>> point = new List<List<Vector2>>{new List<Vector2>{new Vector2(0,0),new Vector2(100,-1000),new Vector2(1000,-10),new Vector2(1000,-1000)}};
 		public override void _Ready()
 		{
 			string chartPath = "res://Chart/TestJson.json";
 			string jsonString = FileAccess.GetFileAsString(chartPath);
 			Root ChartData = ChartAnalyser.GetChartData(jsonString);
+			// line.ThisCurves = point;
+			LineRenderer line = new LineRenderer();
+			line.SetLineRenderer(point);
+			
+			AddChild(line);
 			
 			GD.Print(ChartData.Chart.CoordinateSystems[0].SubCoordinateSystems);
 		}
+
+		// public override void _Process(double delta)
+		// {
+		// 	
+		// }
 	}
 }
