@@ -3,7 +3,7 @@ extends TouchScreenButton
 func _input(event):
 	if event is InputEventScreenTouch:
 		if event.pressed:
-			#print("touch")
+			print("touch")
 			pass
 
 
