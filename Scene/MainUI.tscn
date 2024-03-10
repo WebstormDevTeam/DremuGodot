@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://da00yqlglyaqw"]
+
+[ext_resource type="Shader" path="res://Scene/MainUI.gdshader" id="1_7l8xl"]
+[ext_resource type="Texture2D" uid="uid://8pamryb7w7ea" path="res://Resource/UI/MethodBox.Rect.900_800.png" id="1_3446f"]
+[ext_resource type="Texture2D" uid="uid://bgu1i330a5t6n" path="res://Resource/UI/矩形 26.png" id="2_gadno"]
+[ext_resource type="Texture2D" uid="uid://deuoljtvki7i" path="res://Resource/UI/矩形 28.png" id="3_ukcxg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kfxgf"]
+shader = ExtResource("1_7l8xl")
+
+[node name="MainUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 3440.0
+offset_bottom = 1936.0
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+layout_mode = 0
+offset_left = -616.0
+offset_top = -232.0
+offset_right = 3752.0
+offset_bottom = 1984.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Panel"]
+
+[node name="MethodBox_rect_900800" type="Sprite2D" parent="Panel/CanvasLayer"]
+material = SubResource("ShaderMaterial_kfxgf")
+position = Vector2(1392, 400)
+scale = Vector2(0.632222, 0.56)
+texture = ExtResource("1_3446f")
+
+[node name="矩形26" type="Sprite2D" parent="Panel"]
+position = Vector2(1325.5, 696)
+scale = Vector2(0.842, 0.98)
+texture = ExtResource("2_gadno")
+
+[node name="矩形28" type="Sprite2D" parent="Panel"]
+position = Vector2(1616, 696)
+scale = Vector2(0.861539, 0.753846)
+texture = ExtResource("3_ukcxg")
+
+[node name="矩形26" type="Sprite2D" parent="."]
+position = Vector2(1399, 815)
+scale = Vector2(1.124, 1.14)
+texture = ExtResource("2_gadno")

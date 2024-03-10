@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvse1kwkve2d2"]
+
+[ext_resource type="Script" path="res://Script/UI/StartUI/StartManager.gd" id="1_ol84q"]
+[ext_resource type="Texture2D" uid="uid://bumrj0ln6xmdp" path="res://Image/blob-Draft-1684574689985.png" id="1_uvoe6"]
+[ext_resource type="FontFile" uid="uid://b8btieep64a3g" path="res://Font/创客贴金刚体.ttf" id="2_x4v4d"]
+[ext_resource type="FontFile" uid="uid://dtj5kk5lg0mny" path="res://Font/Alibaba_PuHuiTi_2.0_35_Thin_35_Thin.ttf" id="3_gfsai"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ds6je"]
+font = ExtResource("2_x4v4d")
+font_size = 200
+font_color = Color(0.620438, 0.675367, 1, 1)
+outline_size = 29
+outline_color = Color(0.282353, 0.309804, 0.611765, 1)
+shadow_size = 11
+
+[sub_resource type="LabelSettings" id="LabelSettings_cihen"]
+font = ExtResource("3_gfsai")
+font_size = 50
+font_color = Color(0, 0, 0, 1)
+
+[node name="GameStart" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundImage" type="Sprite2D" parent="."]
+position = Vector2(1141, 868)
+texture = ExtResource("1_uvoe6")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -560.0
+offset_top = -428.0
+offset_right = 559.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dremu"
+label_settings = SubResource("LabelSettings_ds6je")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start" type="Label" parent="."]
+layout_mode = 0
+offset_left = 760.0
+offset_top = 608.0
+offset_right = 1152.0
+offset_bottom = 678.0
+text = "点击任意位置开始"
+label_settings = SubResource("LabelSettings_cihen")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+script = ExtResource("1_ol84q")
+
+[connection signal="pressed" from="TouchScreenButton" to="TouchScreenButton" method="_on_pressed"]
