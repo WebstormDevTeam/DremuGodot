@@ -14,7 +14,7 @@ public class ChartAnalyser
     {
         string jsonString = json;
         Root obj = JsonConvert.DeserializeObject<Root>(jsonString);
-        return obj;            
+        return obj;
     }
 }
 

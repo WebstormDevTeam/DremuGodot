@@ -57,10 +57,19 @@ namespace DremuGodot.Script.GamePlayer
 			// line.ThisCurves = point;
 			LineRenderer line = new LineRenderer();
 			line.SetLineRenderer(point);
-			
+
+			List<INote> notes = new List<INote>
+			{
+				new TapController(),
+				new DragController()
+			};
+			foreach (INote note in notes)
+			{
+				note.Create(0,new List<int>{1,1,4});
+			}
 			AddChild(line);
 			
-			GD.Print(ChartData.Chart.CoordinateSystems[0].SubCoordinateSystems);
+			GD.Print(ChartData.Chart.CoordinateSystems.Count);
 		}
 
 		// public override void _Process(double delta)
