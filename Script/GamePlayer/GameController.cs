@@ -56,18 +56,15 @@ namespace DremuGodot.Script.GamePlayer
 			Root ChartData = ChartAnalyser.GetChartData(jsonString);
 			// line.ThisCurves = point;
 			LineRenderer line = new LineRenderer();
+			CoordinateController coordinateController = new CoordinateController();
+			AddChild(coordinateController);
+			coordinateController.Init();
+			coordinateController.Move([100,100],1.0f);
+			coordinateController.Rotation(90, 1.0f);
+			
 			line.SetLineRenderer(point);
-
-			List<INote> notes = new List<INote>
-			{
-				new TapController(),
-				new DragController()
-			};
-			foreach (INote note in notes)
-			{
-				note.Create(0,new List<int>{1,1,4});
-			}
-			AddChild(line);
+			
+			coordinateController.AddChild(line);
 			
 			GD.Print(ChartData.Chart.CoordinateSystems.Count);
 		}

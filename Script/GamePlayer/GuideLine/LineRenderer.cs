@@ -98,6 +98,7 @@ public partial class LineRenderer : Line2D
 	// 在 _Process 函数中更新折线的点
 	public override void _Process(double delta)
 	{
+		// GD.Print(GlobalPosition);
 		RenderPoints();
 	}
 }
