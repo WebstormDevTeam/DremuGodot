@@ -11,6 +11,7 @@ public partial class LineRenderer : Line2D
 	public Queue<Vector2> PointsQueue = new Queue<Vector2>();
 	public int pointNumber = 100;
 	public static double speed;
+	public Vector2 LastPoint;
 	private double DefaultSpeed = -2;
 	private int n = 0;
 	public List<List<Vector2>> ThisCurves;
@@ -72,7 +73,7 @@ public partial class LineRenderer : Line2D
 			
 			if (points[i].Y > 0)
 			{
-				PointsQueue.Dequeue();
+				LastPoint = PointsQueue.Dequeue();
 			}
 		}
 

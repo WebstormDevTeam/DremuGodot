@@ -49,29 +49,38 @@ namespace DremuGodot.Script.GamePlayer
 	public partial class GameController : Node2D
 	{
 		private List<List<Vector2>> point = new List<List<Vector2>>{new List<Vector2>{new Vector2(0,0),new Vector2(100,-1000),new Vector2(1000,-10),new Vector2(1000,-1000)}};
-		public override void _Ready()
+		public override async void _Ready()
 		{
+			Engine.MaxFps = 60;
 			string chartPath = "res://Chart/TestJson.json";
 			string jsonString = FileAccess.GetFileAsString(chartPath);
 			Root ChartData = ChartAnalyser.GetChartData(jsonString);
+			
+			
 			// line.ThisCurves = point;
 			LineRenderer line = new LineRenderer();
+			
 			CoordinateController coordinateController = new CoordinateController();
 			AddChild(coordinateController);
-			coordinateController.Init();
-			coordinateController.Move([100,100],1.0f);
-			coordinateController.Rotation(90, 1.0f);
-			
+			//TODO:坐标系的代码还没有写
+			// coordinateController.Init();
+			// coordinateController.Move([100,100],1.0f);
+			// coordinateController.Rotation(10, 1.0f);
+			// coordinateController.Play();
 			line.SetLineRenderer(point);
-			
+			List<INote> notes = new List<INote>
+			{
+				new TapController(line,[1,1,4])
+			};
+			coordinateController.AddChild((TapController)notes[0]);
 			coordinateController.AddChild(line);
 			
-			GD.Print(ChartData.Chart.CoordinateSystems.Count);
+			// GD.Print(ChartData.Chart.CoordinateSystems.Count);
 		}
 
-		// public override void _Process(double delta)
-		// {
-		// 	
-		// }
+		public override void _Process(double delta)
+		{
+			// GD.Print(Engine.GetFramesPerSecond());
+		}
 	}
 }

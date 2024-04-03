@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using DremuGodot.Script.GamePlayer;
+using DremuGodot.Script.GamePlayer.GuideLine;
 
 public partial class DragController : Node,INote
 {
@@ -14,10 +15,9 @@ public partial class DragController : Node,INote
 	public override void _Process(double delta)
 	{
 	}
-
-	public void Create(int number, List<int> BeatCode)
+	public void Create(int number, LineRenderer lineRenderer, List<int> time)
 	{
-		GD.Print("DragIsCreated");
+		throw new NotImplementedException();
 	}
 
 	public void JudgeAndDel(double TouchTime)
