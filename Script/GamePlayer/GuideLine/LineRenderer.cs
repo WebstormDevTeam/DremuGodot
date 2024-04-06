@@ -10,7 +10,7 @@ public partial class LineRenderer : Line2D
 	private Vector3[] _points;
 	public Queue<Vector2> PointsQueue = new Queue<Vector2>();
 	public int pointNumber = 100;
-	public static double speed;
+	public double speed;
 	public Vector2 LastPoint;
 	private double DefaultSpeed = -2;
 	private int n = 0;
@@ -27,7 +27,7 @@ public partial class LineRenderer : Line2D
 	///
 	public void SetLineRenderer(List<List<Vector2>> Curves)
 	{
-		
+		speed = (speed > 0 && speed != null ? speed : DefaultSpeed);
 		foreach (List<Vector2> curve in Curves)
 		{
 			AddPoints(curve[0], curve[1], curve[2], curve[3]);
@@ -69,7 +69,7 @@ public partial class LineRenderer : Line2D
 		{
 			float y = points[i].Y;
 			//n*delta以调整下落速度
-			points[i] = new Vector2(points[i].X, y - (float)(n * (speed > 0 && speed != null ? speed : DefaultSpeed)));
+			points[i] = new Vector2(points[i].X, y - (float)(n * speed));
 			
 			if (points[i].Y > 0)
 			{

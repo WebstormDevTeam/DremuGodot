@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using DremuGodot.Script.GamePlayer.GuideLine;
+using DremuGodot.Script.UniLib;
 using Godot.Collections;
 using Newtonsoft.Json;
 
@@ -48,6 +49,9 @@ namespace DremuGodot.Script.GamePlayer
 {
 	public partial class GameController : Node2D
 	{
+		public static float timecode;
+		private int frames = 0;
+		
 		private List<List<Vector2>> point = new List<List<Vector2>>{new List<Vector2>{new Vector2(0,0),new Vector2(100,-1000),new Vector2(1000,-10),new Vector2(1000,-1000)}};
 		public override async void _Ready()
 		{
@@ -73,14 +77,19 @@ namespace DremuGodot.Script.GamePlayer
 				new TapController(line,[1,1,4])
 			};
 			coordinateController.AddChild((TapController)notes[0]);
+			notes[0].init();
 			coordinateController.AddChild(line);
-			
 			// GD.Print(ChartData.Chart.CoordinateSystems.Count);
+		}
+
+		private void setTimeCode(int f)
+		{
+			timecode = frames / Engine.MaxFps;
 		}
 
 		public override void _Process(double delta)
 		{
-			// GD.Print(Engine.GetFramesPerSecond());
+			frames++;
 		}
 	}
 }

@@ -21,7 +21,6 @@ texture = ExtResource("1_bw4iw")
 script = ExtResource("2_8s2jq")
 
 [node name="Coordinate" type="Node2D" parent="GameController"]
-visible = false
 script = ExtResource("3_6en3d")
 
 [node name="LineRenderer" type="Line2D" parent="GameController/Coordinate"]

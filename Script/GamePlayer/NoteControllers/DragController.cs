@@ -20,6 +20,11 @@ public partial class DragController : Node,INote
 		throw new NotImplementedException();
 	}
 
+	public void init()
+	{
+		throw new NotImplementedException();
+	}
+
 	public void JudgeAndDel(double TouchTime)
 	{
 		throw new NotImplementedException();

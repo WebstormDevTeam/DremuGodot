@@ -8,6 +8,7 @@ namespace DremuGodot.Script.GamePlayer;
 /// </summary>
 public interface INote
 {
+    void init();
     
     /// <summary>
     /// 
