@@ -27,6 +27,7 @@ script = ExtResource("3_6en3d")
 script = ExtResource("3_al4ma")
 
 [node name="Tap" type="Sprite2D" parent="GameController/Coordinate/LineRenderer"]
+visible = false
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_rj0bo")
 script = ExtResource("6_yb7pm")
