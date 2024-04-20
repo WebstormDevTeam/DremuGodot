@@ -5,6 +5,7 @@ using DremuGodot.Script.GamePlayer.GuideLine;
 using DremuGodot.Script.UniLib;
 using Godot.Collections;
 using Newtonsoft.Json;
+using Transform2D = Godot.Transform2D;
 
 /*                            _ooOoo_
  *                           o8888888o
@@ -49,37 +50,31 @@ namespace DremuGodot.Script.GamePlayer
 {
 	public partial class GameController : Node2D
 	{
+		[Export] public PackedScene tap;
+		
 		public static float timecode;
 		private int frames = 0;
+
+		
+		
 		
 		private List<List<Vector2>> point = new List<List<Vector2>>{new List<Vector2>{new Vector2(0,0),new Vector2(100,-1000),new Vector2(1000,-10),new Vector2(1000,-1000)}};
-		public override async void _Ready()
+		public override void _Ready()
 		{
 			Engine.MaxFps = 60;
 			string chartPath = "res://Chart/TestJson.json";
 			string jsonString = FileAccess.GetFileAsString(chartPath);
 			Root ChartData = ChartAnalyser.GetChartData(jsonString);
+			//Debug Code
 			
-			
-			// line.ThisCurves = point;
 			LineRenderer line = new LineRenderer();
-			
-			CoordinateController coordinateController = new CoordinateController();
-			AddChild(coordinateController);
-			//TODO:坐标系的代码还没有写
-			// coordinateController.Init();
-			// coordinateController.Move([100,100],1.0f);
-			// coordinateController.Rotation(10, 1.0f);
-			// coordinateController.Play();
 			line.SetLineRenderer(point);
-			List<INote> notes = new List<INote>
-			{
-				new TapController(line,[1,1,4])
-			};
-			coordinateController.AddChild((TapController)notes[0]);
-			notes[0].init();
-			coordinateController.AddChild(line);
-			// GD.Print(ChartData.Chart.CoordinateSystems.Count);
+			AddChild(line);
+			Tap _tap = tap.Instantiate() as Tap;
+			_tap.time = [1, 1, 4];
+			AddChild(_tap);
+
+
 		}
 
 		private void setTimeCode(int f)
@@ -90,6 +85,13 @@ namespace DremuGodot.Script.GamePlayer
 		public override void _Process(double delta)
 		{
 			frames++;
+
+			
+			// tap.update();
+		}
+
+		public override void _PhysicsProcess(double delta)
+		{
 		}
 	}
 }

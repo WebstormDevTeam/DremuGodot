@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4kiuyo4owgds"]
+
+[ext_resource type="Texture2D" uid="uid://bftrfetr7fs2q" path="res://Resource/Tap.png" id="1_yvcse"]
+[ext_resource type="Script" path="res://Script/GamePlayer/NoteControllers/Tap.cs" id="2_fxu26"]
+
+[node name="Tap" type="Sprite2D"]
+visible = false
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_yvcse")
+script = ExtResource("2_fxu26")

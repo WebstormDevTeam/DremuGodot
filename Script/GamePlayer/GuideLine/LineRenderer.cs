@@ -12,10 +12,9 @@ public partial class LineRenderer : Line2D
 	public int pointNumber = 100;
 	public double speed;
 	public Vector2 LastPoint;
-	private double DefaultSpeed = -2;
+	private double DefaultSpeed = -4;
 	private int n = 0;
 	public List<List<Vector2>> ThisCurves;
-	
 	public LineRenderer()
 	{
 		// 初始化一些属性或字段
@@ -27,6 +26,7 @@ public partial class LineRenderer : Line2D
 	///
 	public void SetLineRenderer(List<List<Vector2>> Curves)
 	{
+        
 		speed = (speed > 0 && speed != null ? speed : DefaultSpeed);
 		foreach (List<Vector2> curve in Curves)
 		{

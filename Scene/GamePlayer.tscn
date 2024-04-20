@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c14e02km2lcal"]
+[gd_scene load_steps=6 format=3 uid="uid://c14e02km2lcal"]
 
 [ext_resource type="Texture2D" uid="uid://bumrj0ln6xmdp" path="res://Image/blob-Draft-1684574689985.png" id="1_bw4iw"]
 [ext_resource type="Script" path="res://Script/GamePlayer/GameController.cs" id="2_8s2jq"]
 [ext_resource type="Script" path="res://Script/GamePlayer/CoordinateController.cs" id="3_6en3d"]
 [ext_resource type="Script" path="res://Script/GamePlayer/GuideLine/LineRenderer.cs" id="3_al4ma"]
-[ext_resource type="Texture2D" uid="uid://bftrfetr7fs2q" path="res://Resource/Tap.png" id="5_rj0bo"]
-[ext_resource type="Script" path="res://Script/GamePlayer/NoteControllers/TapController.cs" id="6_yb7pm"]
+[ext_resource type="PackedScene" uid="uid://c4kiuyo4owgds" path="res://Scene/PreFeb/tap.tscn" id="3_pcwn0"]
 
 [node name="GamePlayer" type="Node2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -19,6 +18,7 @@ texture = ExtResource("1_bw4iw")
 
 [node name="GameController" type="Node2D" parent="."]
 script = ExtResource("2_8s2jq")
+tap = ExtResource("3_pcwn0")
 
 [node name="Coordinate" type="Node2D" parent="GameController"]
 script = ExtResource("3_6en3d")
@@ -26,8 +26,4 @@ script = ExtResource("3_6en3d")
 [node name="LineRenderer" type="Line2D" parent="GameController/Coordinate"]
 script = ExtResource("3_al4ma")
 
-[node name="Tap" type="Sprite2D" parent="GameController/Coordinate/LineRenderer"]
-visible = false
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("5_rj0bo")
-script = ExtResource("6_yb7pm")
+[node name="Notes" type="Node2D" parent="GameController/Coordinate"]
