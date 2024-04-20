@@ -69,7 +69,7 @@ public partial class LineRenderer : Line2D
 		{
 			float y = points[i].Y;
 			//n*delta以调整下落速度
-			points[i] = new Vector2(points[i].X, y - (float)(n * speed));
+			points[i] = new Vector2(points[i].X, y - (float)(n * speed)); //TODO:屎山代码，待大佬修改
 			
 			if (points[i].Y > 0)
 			{

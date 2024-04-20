@@ -61,6 +61,7 @@ namespace DremuGodot.Script.GamePlayer
 		private List<List<Vector2>> point = new List<List<Vector2>>{new List<Vector2>{new Vector2(0,0),new Vector2(100,-1000),new Vector2(1000,-10),new Vector2(1000,-1000)}};
 		public override void _Ready()
 		{
+            // DestroyTap += OnDestroyTap();
 			Engine.MaxFps = 60;
 			string chartPath = "res://Chart/TestJson.json";
 			string jsonString = FileAccess.GetFileAsString(chartPath);
@@ -75,7 +76,12 @@ namespace DremuGodot.Script.GamePlayer
 			AddChild(_tap);
 			_tap.InitTap(line,[1,1,4]);
 
+			_tap.Connect("DestroyTap",new Callable(this,nameof(OnDestroyTap)));
+		}
 
+		public void OnDestroyTap()
+		{
+			GD.Print($"Connected");
 		}
 
 		private void setTimeCode(int f)
