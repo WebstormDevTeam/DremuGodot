@@ -70,9 +70,10 @@ namespace DremuGodot.Script.GamePlayer
 			LineRenderer line = new LineRenderer();
 			line.SetLineRenderer(point);
 			AddChild(line);
-			Tap _tap = tap.Instantiate() as Tap;
-			_tap.time = [1, 1, 4];
+			Tap _tap = Tap.newTap<Tap>(tap);
+			_tap.Visible = true;
 			AddChild(_tap);
+			_tap.InitTap(line,[1,1,4]);
 
 
 		}
