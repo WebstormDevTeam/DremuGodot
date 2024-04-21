@@ -71,14 +71,17 @@ namespace DremuGodot.Script.GamePlayer
 			LineRenderer line = new LineRenderer();
 			line.SetLineRenderer(point);
 			AddChild(line);
-			Tap _tap = Tap.newTap<Tap>(tap);
-			_tap.Visible = true;
+			Tap _tap = Tap.newNote<Tap>(tap);
+			_tap.Visible = true; //设置可见性
 			AddChild(_tap);
 			_tap.InitTap(line,[1,1,4]);
 
-			_tap.Connect("DestroyTap",new Callable(this,nameof(OnDestroyTap)));
+			_tap.Connect("DestroyTap",new Callable(this,nameof(OnDestroyTap))); //连接信号
 		}
-
+		
+		/// <summary>
+		/// 用于信号连接的函数
+		/// </summary>
 		public void OnDestroyTap()
 		{
 			GD.Print($"Connected");
