@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bumrj0ln6xmdp" path="res://Image/blob-Draft-1684574689985.png" id="1_bw4iw"]
 [ext_resource type="Script" path="res://Script/GamePlayer/GameController.cs" id="2_8s2jq"]
 [ext_resource type="Script" path="res://Script/GamePlayer/CoordinateController.cs" id="3_6en3d"]
-[ext_resource type="Script" path="res://Script/GamePlayer/GuideLine/LineRenderer.cs" id="3_al4ma"]
+[ext_resource type="PackedScene" uid="uid://c125d58twpos1" path="res://Scene/PreFeb/line_renderer.tscn" id="3_il0qd"]
 [ext_resource type="PackedScene" uid="uid://c4kiuyo4owgds" path="res://Scene/PreFeb/tap.tscn" id="3_pcwn0"]
 
 [node name="GamePlayer" type="Node2D"]
@@ -18,12 +18,11 @@ texture = ExtResource("1_bw4iw")
 
 [node name="GameController" type="Node2D" parent="."]
 script = ExtResource("2_8s2jq")
+lineRenderer = ExtResource("3_il0qd")
 tap = ExtResource("3_pcwn0")
+isAutoPlay = true
 
 [node name="Coordinate" type="Node2D" parent="GameController"]
 script = ExtResource("3_6en3d")
-
-[node name="LineRenderer" type="Line2D" parent="GameController/Coordinate"]
-script = ExtResource("3_al4ma")
 
 [node name="Notes" type="Node2D" parent="GameController/Coordinate"]

@@ -50,17 +50,29 @@ namespace DremuGodot.Script.GamePlayer
 {
 	public partial class GameController : Node2D
 	{
+		[Export] public PackedScene lineRenderer;
 		[Export] public PackedScene tap;
+
+
+		[Export] public bool isAutoPlay;
 		
 		public static float timecode;
+		public static GameController Instance;
+
 		private int frames = 0;
 
 		
-		
+		public GameController()
+		{
+			Instance = this;
+		}
 		
 		private List<List<Vector2>> point = new List<List<Vector2>>{new List<Vector2>{new Vector2(0,0),new Vector2(100,-1000),new Vector2(1000,-10),new Vector2(1000,-1000)}};
 		public override void _Ready()
 		{
+            if (isAutoPlay == null)
+				isAutoPlay = true;
+
             // DestroyTap += OnDestroyTap();
 			Engine.MaxFps = 60;
 			string chartPath = "res://Chart/TestJson.json";
@@ -68,7 +80,7 @@ namespace DremuGodot.Script.GamePlayer
 			Root ChartData = ChartAnalyser.GetChartData(jsonString);
 			//Debug Code
 			
-			LineRenderer line = new LineRenderer();
+			LineRenderer line = LineRenderer.newLineRenderer<LineRenderer>(lineRenderer);
 			line.SetLineRenderer(point);
 			AddChild(line);
 			Tap _tap = Tap.newNote<Tap>(tap);
@@ -81,9 +93,11 @@ namespace DremuGodot.Script.GamePlayer
 		
 		/// <summary>
 		/// 用于信号连接的函数
+		/// 主要用来处理打击特效和判定
 		/// </summary>
 		public void OnDestroyTap()
 		{
+			
 			GD.Print($"Connected");
 		}
 

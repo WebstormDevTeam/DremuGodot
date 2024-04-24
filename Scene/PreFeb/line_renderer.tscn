@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c125d58twpos1"]
+
+[ext_resource type="Script" path="res://Script/GamePlayer/GuideLine/LineRenderer.cs" id="1_sv8kl"]
+
+[node name="LineRenderer" type="Line2D"]
+script = ExtResource("1_sv8kl")

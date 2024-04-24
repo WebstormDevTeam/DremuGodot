@@ -15,9 +15,9 @@ public partial class LineRenderer : Line2D
 	private double DefaultSpeed = -4;
 	private int n = 0;
 	public List<List<Vector2>> ThisCurves;
-	public LineRenderer()
+	public static T newLineRenderer<T>(PackedScene lineRendererPackedScene) where T : class
 	{
-		// 初始化一些属性或字段
+		return lineRendererPackedScene.Instantiate() as T;
 	}
 	/// <summary>
 	/// 创建引导线（由多个三阶贝赛尔曲线构成）
@@ -26,7 +26,7 @@ public partial class LineRenderer : Line2D
 	///
 	public void SetLineRenderer(List<List<Vector2>> Curves)
 	{
-        
+		
 		speed = (speed > 0 && speed != null ? speed : DefaultSpeed);
 		foreach (List<Vector2> curve in Curves)
 		{
