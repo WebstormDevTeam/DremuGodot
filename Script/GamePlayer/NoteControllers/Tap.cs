@@ -8,7 +8,7 @@ using DremuGodot.Script.GamePlayer;
 using DremuGodot.Script.GamePlayer.GuideLine;
 using DremuGodot.Script.UniLib;
 
-public partial class Tap : Sprite2D
+public partial class Tap : Sprite2D, INote
 {
 	[Signal]
 	public delegate void DestroyTapEventHandler(); //定义信号，使用委托类型
@@ -26,12 +26,15 @@ public partial class Tap : Sprite2D
 	{
 		return notePackedScene.Instantiate() as T;
 	}
+
+	
+
 	/// <summary>
 	/// 初始化Tap，只可以在代码中调用少量的次数，使用多了会出现效率问题
 	/// </summary>
 	/// <param name="lineRenderer">绑定的线渲染器</param>
 	/// <param name="timeCode">判定的时间，不是创建的时间</param>
-	public void InitTap(LineRenderer lineRenderer, List<int> timeCode)
+	public void InitNote(LineRenderer lineRenderer, List<int> timeCode)
 	{
 		// GD.Print("Tap is created");
 		// 从点队列中获取对应时间的点

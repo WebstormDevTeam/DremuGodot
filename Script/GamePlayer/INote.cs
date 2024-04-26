@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DremuGodot.Script.GamePlayer.GuideLine;
+using Godot;
 
 namespace DremuGodot.Script.GamePlayer;
 
@@ -8,11 +9,11 @@ namespace DremuGodot.Script.GamePlayer;
 /// </summary>
 public interface INote
 {
-    void init();
-    
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="TouchTime"></param>
-    void JudgeAndDel(double TouchTime);
+    /// <param name="lineRenderer"></param>
+    /// <param name="timecode"></param>
+    void InitNote(LineRenderer lineRenderer, List<int> timecode);
+
 }

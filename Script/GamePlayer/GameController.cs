@@ -52,8 +52,7 @@ namespace DremuGodot.Script.GamePlayer
 	{
 		[Export] public PackedScene lineRenderer;
 		[Export] public PackedScene tap;
-
-
+		
 		[Export] public bool isAutoPlay;
 		
 		public static float timecode;
@@ -86,7 +85,7 @@ namespace DremuGodot.Script.GamePlayer
 			Tap _tap = Tap.newNote<Tap>(tap);
 			_tap.Visible = true; //设置可见性
 			AddChild(_tap);
-			_tap.InitTap(line,[1,1,4]);
+			_tap.InitNote(line,[1,1,4]);
 
 			_tap.Connect("DestroyTap",new Callable(this,nameof(OnDestroyTap))); //连接信号
 		}
