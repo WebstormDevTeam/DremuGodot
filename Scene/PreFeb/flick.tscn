@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0gqn2twc2c70"]
+
+[ext_resource type="Texture2D" uid="uid://3lrad0bhsscr" path="res://Resource/Flick.png" id="1_qnaog"]
+[ext_resource type="Script" path="res://Script/GamePlayer/NoteControllers/Flick.cs" id="2_vxv3y"]
+
+[node name="Flick" type="Sprite2D"]
+visible = false
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_qnaog")
+script = ExtResource("2_vxv3y")

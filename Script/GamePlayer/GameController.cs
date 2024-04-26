@@ -52,6 +52,8 @@ namespace DremuGodot.Script.GamePlayer
 	{
 		[Export] public PackedScene lineRenderer;
 		[Export] public PackedScene tap;
+		[Export] public PackedScene drag;
+		[Export] public PackedScene flick;
 		
 		[Export] public bool isAutoPlay;
 		
@@ -69,10 +71,10 @@ namespace DremuGodot.Script.GamePlayer
 		private List<List<Vector2>> point = new List<List<Vector2>>{new List<Vector2>{new Vector2(0,0),new Vector2(100,-1000),new Vector2(1000,-10),new Vector2(1000,-1000)}};
 		public override void _Ready()
 		{
-            if (isAutoPlay == null)
+			if (isAutoPlay == null)
 				isAutoPlay = true;
 
-            // DestroyTap += OnDestroyTap();
+			// DestroyTap += OnDestroyTap();
 			Engine.MaxFps = 60;
 			string chartPath = "res://Chart/TestJson.json";
 			string jsonString = FileAccess.GetFileAsString(chartPath);
@@ -85,9 +87,25 @@ namespace DremuGodot.Script.GamePlayer
 			Tap _tap = Tap.newNote<Tap>(tap);
 			_tap.Visible = true; //设置可见性
 			AddChild(_tap);
-			_tap.InitNote(line,[1,1,4]);
+			_tap.InitNote(line,[1,0,4]);
 
-			_tap.Connect("DestroyTap",new Callable(this,nameof(OnDestroyTap))); //连接信号
+			_tap.Connect("DestroyTap",new Callable(this,nameof(OnDestroyTap))); //连接摧毁Tap信号
+			
+			
+			Drag _drag = Drag.newNote<Drag>(drag);
+			_drag.Visible = true; //设置可见性
+			AddChild(_drag);
+			_drag.InitNote(line,[1,1,4]);
+
+			_drag.Connect("DestroyDrag",new Callable(this,nameof(OnDestroyDrag))); //连接摧毁Drag信号
+
+
+			Flick _flick = Flick.newNote<Flick>(flick);
+			_flick.Visible = true; //设置可见性
+			AddChild(_flick);
+			_flick.InitNote(line,[1,2,4]);
+
+			_flick.Connect("DestroyFlick",new Callable(this,nameof(OnDestroyFlick))); //连接摧毁Flick信号
 		}
 		
 		/// <summary>
@@ -95,6 +113,16 @@ namespace DremuGodot.Script.GamePlayer
 		/// 主要用来处理打击特效和判定
 		/// </summary>
 		public void OnDestroyTap()
+		{
+			
+			GD.Print($"Connected");
+		}
+		public void OnDestroyDrag()
+		{
+			
+			GD.Print($"Connected");
+		}
+		public void OnDestroyFlick()
 		{
 			
 			GD.Print($"Connected");

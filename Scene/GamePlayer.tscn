@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c14e02km2lcal"]
+[gd_scene load_steps=8 format=3 uid="uid://c14e02km2lcal"]
 
 [ext_resource type="Texture2D" uid="uid://bumrj0ln6xmdp" path="res://Image/blob-Draft-1684574689985.png" id="1_bw4iw"]
 [ext_resource type="Script" path="res://Script/GamePlayer/GameController.cs" id="2_8s2jq"]
+[ext_resource type="PackedScene" uid="uid://c125d58twpos1" path="res://Scene/PreFeb/line_renderer.tscn" id="3_5s5pv"]
 [ext_resource type="Script" path="res://Script/GamePlayer/CoordinateController.cs" id="3_6en3d"]
-[ext_resource type="PackedScene" uid="uid://c125d58twpos1" path="res://Scene/PreFeb/line_renderer.tscn" id="3_il0qd"]
-[ext_resource type="PackedScene" uid="uid://c4kiuyo4owgds" path="res://Scene/PreFeb/tap.tscn" id="3_pcwn0"]
+[ext_resource type="PackedScene" uid="uid://c4kiuyo4owgds" path="res://Scene/PreFeb/tap.tscn" id="4_a35ia"]
+[ext_resource type="PackedScene" uid="uid://dd1x2v3js4rf5" path="res://Scene/PreFeb/drag.tscn" id="5_u4kna"]
+[ext_resource type="PackedScene" uid="uid://c0gqn2twc2c70" path="res://Scene/PreFeb/flick.tscn" id="6_h8mrg"]
 
 [node name="GamePlayer" type="Node2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -18,8 +20,10 @@ texture = ExtResource("1_bw4iw")
 
 [node name="GameController" type="Node2D" parent="."]
 script = ExtResource("2_8s2jq")
-lineRenderer = ExtResource("3_il0qd")
-tap = ExtResource("3_pcwn0")
+lineRenderer = ExtResource("3_5s5pv")
+tap = ExtResource("4_a35ia")
+drag = ExtResource("5_u4kna")
+flick = ExtResource("6_h8mrg")
 isAutoPlay = true
 
 [node name="Coordinate" type="Node2D" parent="GameController"]
