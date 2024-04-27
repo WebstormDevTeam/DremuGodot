@@ -1,115 +1,150 @@
 {
-  "Name":"Hallucination",
-  "Version":20230001,
-  "Hard":"SP LV.18",
-  "bpm":350,
-  "Chart":{
-	"CoordinateSystems":[
-	  {
-		"Num":"0",
-		"Pos":[0,0],
-		"Rot":0,
-		"SubCoordinateSystems":[],
-		"GuideLines":[
-		  {
-			"Num": 0,
-			"JudgementPointIsShow": true,
-			"lines": [
-			  {
-				"Num":0,
-				"Time":[0,0,1],
-				"LineType": "Liner",
-				"Start": [0,0],
-				"End": [100,100]
-			  },
-			  {
-				"Num":1,
-				"Time":[1,1,4],
-				"LineType": "Bezier",
-				"Start": [0,0],
-				"p1": [20,20],
-				"p2": [60,50],
-				"End": [100,100]
-			  }
-			]
-		  }
-		],
-		"Actions":[
-		  {
-			"ActionName":"Move",
-			"Time":[[0,0,1],[1,1,4]],
-			"Pos":[[0,0],[100,0]]
-		  }
-		]
-	  },
-	  {
-		"Num":"1",
-		"Pos":[0,0],
-		"Rot":90,
-		"SubCoordinateSystems":[
-		  {
-			"Num":"1 0",
-			"Pos":[0,0],
-			"Rot":0,
-			"SubCoordinateSystems":[],
-			"GuideLines":[
-			  {
-				"Num": 0,
-				"JudgementPointIsShow": true,
+	"Name": "Hallucination",
+	"Hard": "HD.15",
+	"DefaultBPM": 191,
+	"Chart": [
+		{
+			"coordinate": {
+				"pos": [
+					0,
+					0
+				],
+				"rot": 0,
 				"lines": [
-				  {
-					"Num":0,
-					"Time":[0,0,1],
-					"LineType": "Liner",
-					"Start": [0,0],
-					"End": [100,100]
-				  },
-				  {
-					"Num":1,
-					"Time":[1,1,4],
-					"LineType": "Bezier",
-					"Start": [0,0],
-					"p1": [20,20],
-					"p2": [60,50],
-					"End": [100,100]
-				  }
+					{
+						"num": 0,
+						"line": [
+							{
+								"start": [
+									0,
+									0
+								],
+								"end": [
+									1000,
+									1000
+								],
+								"p1": [
+									500,
+									300
+								],
+								"p2": [
+									-500,
+									-300
+								]
+							},
+							{
+								"start": [
+									1000,
+									1000
+								],
+								"end": [
+									1600,
+									1600
+								],
+								"p1": [
+									1000,
+									500
+								],
+								"p2": [
+									-1000,
+									-500
+								]
+							}
+						],
+						"note": [
+							{
+								"time": [
+									1,
+									0,
+									1
+								],
+								"type": 3,
+								"end": [
+									1,
+									1,
+									4
+								]
+							},
+							{
+								"time": [
+									2,
+									0,
+									1
+								],
+								"type": 0
+							},
+							{
+								"time": [
+									3,
+									0,
+									1
+								],
+								"type": 0
+							}
+						]
+					}
+				],
+				"motion": [
+					{
+						"type": "move",
+						"begin": [
+							1,
+							0,
+							1
+						],
+						"over": [
+							1,
+							1,
+							4
+						],
+						"start": [
+							0,
+							0
+						],
+						"end": [
+							100,
+							100
+						],
+						"curve": "sine"
+					}
 				]
-			  }
+			}
+		}
+	],
+	"Action": [
+		{
+			"type": "Text",
+			"text": "Hallucination",
+			"begin": [
+				1,
+				0,
+				1
 			],
-			"Actions":[
-			  {
-				"ActionName":"Rotation",
-				"Time":[[0,0,1],[1,1,4]],
-				"Rot":[0,45]
-			  }
-			]
-		  }
-		],
-		"GuideLines":[
-		  {
-			"Num": 0,
-			"JudgementPointIsShow": true,
-			"lines": [
-			  {
-				"Num":0,
-				"Time":[0,0,1],
-				"LineType": "Liner",
-				"Start": [0,0],
-				"End": [100,100]
-			  },
-			  {
-				"Num":1,
-				"Time":[1,1,4],
-				"LineType": "Bezier",
-				"Start": [0,0],
-				"p1": [20,20],
-				"p2": [60,50],
-				"End": [100,100]
-			  }
-			]
-		  }
-		]
-	  }
+			"over": [
+				5,
+				1,
+				4
+			],
+			"pos": {
+				"start": [
+					0,
+					0
+				],
+				"end": [
+					100,
+					100
+				],
+				"curve": "Liner"
+			}
+		},
+		{
+			"type": "State",
+			"time": [
+				1,
+				0,
+				1
+			],
+			"state": 1
+		}
 	]
-  }
-}        
+}

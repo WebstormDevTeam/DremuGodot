@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://c14e02km2lcal"]
+[gd_scene load_steps=9 format=3 uid="uid://c14e02km2lcal"]
 
 [ext_resource type="Texture2D" uid="uid://bumrj0ln6xmdp" path="res://Image/blob-Draft-1684574689985.png" id="1_bw4iw"]
 [ext_resource type="Script" path="res://Script/GamePlayer/GameController.cs" id="2_8s2jq"]
 [ext_resource type="PackedScene" uid="uid://c125d58twpos1" path="res://Scene/PreFeb/line_renderer.tscn" id="3_5s5pv"]
 [ext_resource type="Script" path="res://Script/GamePlayer/CoordinateController.cs" id="3_6en3d"]
 [ext_resource type="PackedScene" uid="uid://c4kiuyo4owgds" path="res://Scene/PreFeb/tap.tscn" id="4_a35ia"]
-[ext_resource type="PackedScene" uid="uid://dd1x2v3js4rf5" path="res://Scene/PreFeb/drag.tscn" id="5_u4kna"]
-[ext_resource type="PackedScene" uid="uid://c0gqn2twc2c70" path="res://Scene/PreFeb/flick.tscn" id="6_h8mrg"]
+[ext_resource type="PackedScene" path="res://Scene/PreFeb/drag.tscn" id="5_u4kna"]
+[ext_resource type="PackedScene" path="res://Scene/PreFeb/flick.tscn" id="6_h8mrg"]
+[ext_resource type="LabelSettings" uid="uid://bby1q3wi60sg5" path="res://Scene/UISetting/GamePlayerNameLabelSetting.tres" id="8_vf4uk"]
 
 [node name="GamePlayer" type="Node2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -18,15 +19,32 @@ rotation = -6.28319
 position = Vector2(-76, 432)
 texture = ExtResource("1_bw4iw")
 
-[node name="GameController" type="Node2D" parent="."]
+[node name="GameController" type="Node2D" parent="." node_paths=PackedStringArray("NameLabel")]
 script = ExtResource("2_8s2jq")
 lineRenderer = ExtResource("3_5s5pv")
 tap = ExtResource("4_a35ia")
 drag = ExtResource("5_u4kna")
 flick = ExtResource("6_h8mrg")
+NameLabel = NodePath("../UI/NameAndLevel")
 isAutoPlay = true
 
 [node name="Coordinate" type="Node2D" parent="GameController"]
 script = ExtResource("3_6en3d")
 
 [node name="Notes" type="Node2D" parent="GameController/Coordinate"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NameAndLevel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = -912.0
+offset_top = 396.0
+offset_right = 10.0
+offset_bottom = 516.0
+text = "Hallucination LV.16"
+label_settings = ExtResource("8_vf4uk")
+vertical_alignment = 1

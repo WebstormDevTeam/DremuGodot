@@ -18,64 +18,174 @@ public class ChartAnalyser
     }
 }
 
-// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-public class Action
+public class LineItem
 {
-    public string ActionName;
-    public List<List<int>> Time;
-    public List<int> Rot;
-    public List<List<int>> Pos;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > start;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > end;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > p1;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > p2;
 }
 
-public class Chart
+public class NoteItem
 {
-    public List<CoordinateSystem> CoordinateSystems;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > time;
+    /// <summary>
+    /// 
+    /// </summary>
+    public int type;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > end;
 }
 
-public class CoordinateSystem
+public class LinesItem
 {
-    public string Num;
-    public List<int> Pos;
-    public int Rot;
-    public List<SubCoordinateSystem> SubCoordinateSystems;
-    public List<GuideLines> GuideLines;
-    public List<Action> Actions;
+    /// <summary>
+    /// 
+    /// </summary>
+    public int num;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <LineItem > line;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <NoteItem > note;
 }
 
-public class GuideLines
+public class MotionItem
 {
-    public int Num;
-    public bool JudgementPointIsShow;
-    public List<Line> lines;
+    /// <summary>
+    /// 
+    /// </summary>
+    public string type;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > begin;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > over;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > start;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > end;
+    /// <summary>
+    /// 
+    /// </summary>
+    public string curve;
 }
 
-public class Line
+public class Coordinate
 {
-    public int Num;
-    public List<int> Time;
-    public string LineType;
-    public List<int> Start;
-    public List<int> End;
-    public List<int> p1;
-    public List<int> p2;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > pos;
+    /// <summary>
+    /// 
+    /// </summary>
+    public int rot;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <LinesItem > lines;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <MotionItem > motion;
+}
+
+public class ChartItem
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public Coordinate coordinate;
+}
+
+public class Pos
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > start;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > end;
+    /// <summary>
+    /// 
+    /// </summary>
+    public string curve;
+}
+
+public class ActionItem
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public string type;
+    /// <summary>
+    /// 
+    /// </summary>
+    public string text;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > begin;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <int > over;
+    /// <summary>
+    /// 
+    /// </summary>
+    public Pos pos;
 }
 
 public class Root
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public string Name;
-    public int Version;
+    /// <summary>
+    /// 
+    /// </summary>
     public string Hard;
-    public int bpm;
-    public Chart Chart;
+    /// <summary>
+    /// 
+    /// </summary>
+    public int DefaultBPM;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <ChartItem > Chart;
+    /// <summary>
+    /// 
+    /// </summary>
+    public List <ActionItem > Action;
 }
-
-public class SubCoordinateSystem
-{
-    public string Num;
-    public List<int> Pos;
-    public int Rot;
-    public List<object> SubCoordinateSystems;
-    public List<GuideLines> GuideLines;
-    public List<Action> Actions;
-}
-
