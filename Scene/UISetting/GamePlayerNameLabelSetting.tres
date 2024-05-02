@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bby1q3wi60sg5"]
+
+[ext_resource type="FontFile" uid="uid://b8btieep64a3g" path="res://Font/创客贴金刚体.ttf" id="1_tvggv"]
+
+[resource]
+font = ExtResource("1_tvggv")
+font_size = 64

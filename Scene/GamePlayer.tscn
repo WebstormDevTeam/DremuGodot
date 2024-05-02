@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://c125d58twpos1" path="res://Scene/PreFeb/line_renderer.tscn" id="3_5s5pv"]
 [ext_resource type="Script" path="res://Script/GamePlayer/CoordinateController.cs" id="3_6en3d"]
 [ext_resource type="PackedScene" uid="uid://c4kiuyo4owgds" path="res://Scene/PreFeb/tap.tscn" id="4_a35ia"]
-[ext_resource type="PackedScene" path="res://Scene/PreFeb/drag.tscn" id="5_u4kna"]
-[ext_resource type="PackedScene" path="res://Scene/PreFeb/flick.tscn" id="6_h8mrg"]
+[ext_resource type="PackedScene" uid="uid://dd1x2v3js4rf5" path="res://Scene/PreFeb/drag.tscn" id="5_u4kna"]
+[ext_resource type="PackedScene" uid="uid://c0gqn2twc2c70" path="res://Scene/PreFeb/flick.tscn" id="6_h8mrg"]
 [ext_resource type="LabelSettings" uid="uid://bby1q3wi60sg5" path="res://Scene/UISetting/GamePlayerNameLabelSetting.tres" id="8_vf4uk"]
 
 [node name="GamePlayer" type="Node2D"]

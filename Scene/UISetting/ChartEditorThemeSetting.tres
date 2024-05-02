@@ -1,0 +1,46 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dwhv0gjxdlx1w"]
+
+[ext_resource type="FontFile" uid="uid://b8btieep64a3g" path="res://Font/创客贴金刚体.ttf" id="1_b4xp5"]
+[ext_resource type="StyleBox" uid="uid://hffmhvfw4rv2" path="res://Scene/UISetting/BGStylePanel.tres" id="2_l3gqp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0u5gb"]
+bg_color = Color(0.772549, 0.705882, 1, 0.627451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45vcq"]
+bg_color = Color(0.701961, 0.780392, 0.988235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdoll"]
+bg_color = Color(0.858824, 0.815686, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3p060"]
+bg_color = Color(0.670588, 0.733333, 0.996078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blkin"]
+bg_color = Color(0.454902, 0.654902, 0.898039, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvnmj"]
+bg_color = Color(0.505882, 0.713726, 0.933333, 0.698039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a2jj"]
+bg_color = Color(0.352941, 0.478431, 0.65098, 0.384314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdjy7"]
+bg_color = Color(0.678431, 0.780392, 0.921569, 1)
+
+[resource]
+Button/colors/font_color = Color(0.239216, 0.239216, 0.239216, 1)
+Button/fonts/font = ExtResource("1_b4xp5")
+Button/styles/disabled = SubResource("StyleBoxFlat_0u5gb")
+Button/styles/focus = SubResource("StyleBoxFlat_45vcq")
+Button/styles/hover = SubResource("StyleBoxFlat_wdoll")
+Button/styles/normal = SubResource("StyleBoxFlat_3p060")
+Button/styles/pressed = SubResource("StyleBoxFlat_blkin")
+Panel/styles/panel = ExtResource("2_l3gqp")
+TextEdit/colors/background_color = Color(0.694118, 0.694118, 0.694118, 0)
+TextEdit/colors/caret_background_color = Color(0.72549, 0.835294, 0.815686, 1)
+TextEdit/colors/current_line_color = Color(0.580392, 0.756863, 0.878431, 0.8)
+TextEdit/colors/search_result_color = Color(0.47451, 0.654902, 0.776471, 1)
+TextEdit/colors/selection_color = Color(0.282353, 0.537255, 0.654902, 1)
+TextEdit/styles/focus = SubResource("StyleBoxFlat_rvnmj")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_2a2jj")
+TextEdit/styles/read_only = SubResource("StyleBoxFlat_pdjy7")

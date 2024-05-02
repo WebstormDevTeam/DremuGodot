@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cmv4vthrw7q4o"]
+
+[ext_resource type="FontFile" uid="uid://b8btieep64a3g" path="res://Font/创客贴金刚体.ttf" id="1_dc51m"]
+
+[resource]
+font = ExtResource("1_dc51m")
+font_size = 32
+font_color = Color(0.317647, 0.317647, 0.317647, 1)

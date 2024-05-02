@@ -61,7 +61,6 @@ namespace DremuGodot.Script.GamePlayer
             NameLabel.Text = ChartData.Name + " " + ChartData.Hard;
             ChartPlay();
             //Debug Code
-
             // 创建新的线渲染器并添加到节点
             // LineRenderer line = LineRenderer.newLineRenderer<LineRenderer>(lineRenderer);
             // line.SetLineRenderer(point);
@@ -116,10 +115,14 @@ namespace DremuGodot.Script.GamePlayer
                         };
                         
                     }
+                    //TODO:使用两段式绘制线段后，有Bug，线不显示
                     GuideLines.Add(LineRenderer.newLineRenderer<LineRenderer>(this.lineRenderer)); // 创建新的线渲染器并添加到节点
                     GuideLines[lineGroup.num].SetLineRenderer(point);
                     AddChild(GuideLines[lineGroup.num]);
-                    
+                    foreach (NoteItem note in lineGroup.note)
+                    {
+                        GD.Print($"{note.time}");
+                    }
                 }
             }
         }
