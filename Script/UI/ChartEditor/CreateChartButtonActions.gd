@@ -2,10 +2,12 @@ extends Control
 
 
 @export var PathLabel:Label
+@export var MusicStream:AudioStream
+@export var MusicPlayer:AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,6 +21,7 @@ func _open_music_file():
 	file_dialog.set_title("Open Music File")
 	file_dialog.add_filter("*.mp3")
 	print(OS.get_environment("USER"))
+	# 
 	if OS.get_name()=="Window":
 		if OS.has_environment("USERNAME"):
 			var username = OS.get_environment("USERNAME")
@@ -46,3 +49,11 @@ func _open_music_file():
 func _music_file_selected(path):
 	PathLabel.text = path
 	print("Selected music file: " + path)
+	#播放音频
+	var MusicFile = FileAccess.open(path,FileAccess.READ)
+	var stream = AudioStreamMP3.new()
+	stream.data = MusicFile.get_buffer(MusicFile.get_length())
+	MusicPlayer.stream = stream
+	MusicPlayer.play()
+	
+	
