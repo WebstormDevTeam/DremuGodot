@@ -19,13 +19,12 @@ rotation = -6.28319
 position = Vector2(-76, 432)
 texture = ExtResource("1_bw4iw")
 
-[node name="GameController" type="Node2D" parent="." node_paths=PackedStringArray("NameLabel")]
+[node name="GameController" type="Node2D" parent="."]
 script = ExtResource("2_8s2jq")
 lineRenderer = ExtResource("3_5s5pv")
 tap = ExtResource("4_a35ia")
 drag = ExtResource("5_u4kna")
 flick = ExtResource("6_h8mrg")
-NameLabel = NodePath("../UI/NameAndLevel")
 isAutoPlay = true
 
 [node name="Coordinate" type="Node2D" parent="GameController"]
