@@ -5,6 +5,10 @@ extends Control
 @export var MusicStream:AudioStream
 @export var MusicPlayer:AudioStreamPlayer2D
 
+
+var _Path
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -57,3 +61,7 @@ func _music_file_selected(path):
 	MusicPlayer.play()
 	
 	
+
+
+func _on_create_button_down():
+	pass # Replace with function body.

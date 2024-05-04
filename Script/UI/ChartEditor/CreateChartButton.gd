@@ -15,4 +15,5 @@ func _process(delta):
 
 func _on_button_down():
 	print(_nameLineEdit.text)
+	
 	print("Created")
