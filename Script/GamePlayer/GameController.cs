@@ -39,7 +39,7 @@ namespace DremuGodot.Script.GamePlayer
 			Instance = this;
 		}
 
-		// 点的列表
+		// 点的列表!测试用的
 		private List<List<Vector2>> point = new List<List<Vector2>>
 		{
 			new List<Vector2>
@@ -49,11 +49,13 @@ namespace DremuGodot.Script.GamePlayer
 		// _Ready方法，当节点准备好时调用
 		public override void _Ready()
 		{
+			//设置AutoPlay的默认值
 			if (isAutoPlay == null)
 				isAutoPlay = true;
 
 			// 设置最大帧率
 			Engine.MaxFps = 60;
+			//读取和解析Json文件
 			string chartPath = "res://Chart/TestJson.json";
 			string jsonString = FileAccess.GetFileAsString(chartPath);
 			ChartData = ChartAnalyser.GetChartData(jsonString);

@@ -15,6 +15,10 @@ run/main_scene="res://Scene/ChartEditor/ChartEditor.tscn"
 config/features=PackedStringArray("4.2", "C#", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+EVarible="*res://Script/UI/ChartEditor/EVarible.gd"
+
 [display]
 
 window/size/viewport_width=1920

@@ -1,0 +1,10 @@
+{
+  "Name": "Hallucination",
+  "Info": "それは注释です",
+  "Actions":[
+    {
+      "Type": "GuideLineCreator",
+      "args":{}
+    }
+  ]
+}

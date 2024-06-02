@@ -11,13 +11,19 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1oaoa"]
 bg_color = Color(0.964706, 0.886275, 0.952941, 1)
 
-[node name="CreateDialogWindows" type="Control"]
+[node name="CreateDialogWindows" type="Control" node_paths=PackedStringArray("PathLabel", "MusicPlayer", "_MusicName", "_ChartName", "_ArtistName", "_DefaultBPM")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_5sqwv")
+PathLabel = NodePath("Sprite2D/OpenMusicFile/Path")
 MusicStream = ExtResource("2_6wbnb")
+MusicPlayer = NodePath("AudioStreamPlayer2D")
+_MusicName = NodePath("Sprite2D/NameInput/NameLineEdit")
+_ChartName = NodePath("Sprite2D/Chart/CharterInput")
+_ArtistName = NodePath("Sprite2D/ArtistName/NameLineEdit")
+_DefaultBPM = NodePath("Sprite2D/BPMInput/NameLineEdit")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(941, 506)
