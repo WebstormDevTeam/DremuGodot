@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace DremuGodot.Script.UniLib;
@@ -6,7 +7,7 @@ public class TimecodeTras
 {
     public static float FromBpm(List<int> BpmCode,int bpm)
     {
-        return (60f / bpm) * (BpmCode[0] + BpmCode[1] / (float)BpmCode[2]);
+        return (float)Math.Round(((60f / bpm) * (BpmCode[0] + BpmCode[1] / (float)BpmCode[2])),2);
     }
 
     public static float FromFps(List<int> FpsCode, int fps)
@@ -22,5 +23,6 @@ public class TimecodeTras
         int minutes = (totalFrames % (fps * 60 * 60)) / (fps * 60);
         return totalFrames;
     }
+    //TODO: 要把FramesCode（当前已经渲染的帧数）转化为节拍码
     
 }
