@@ -27,6 +27,10 @@ public class TimecodeTras
     public static float BpmToTimecode(int bpm, List<int> BpmCode)
     {
         float T = 60 / (float)bpm;//spb
+        if (BpmCode[2] == 0)
+        {
+            return (float)Math.Round(T * BpmCode[0], 2);
+        }
         return (float)Math.Round(T * BpmCode[0] + T * BpmCode[1] / BpmCode[2], 2);
     }
     

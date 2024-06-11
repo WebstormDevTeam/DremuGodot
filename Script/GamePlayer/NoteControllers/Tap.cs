@@ -45,8 +45,24 @@ public partial class Tap : Sprite2D, INote
 
 		Position = pointsQueue[count]; //设置初始位置
 									   //设置结束的位置
-		_endPosition.X = Position.X;
-		_endPosition.Y = 0;
+		// _endPosition.X = Position.X;
+		// _endPosition.Y = 0;
+
+	}
+	
+	public void InitNote(LineRenderer lineRenderer,int frames)
+	{
+		// GD.Print("Tap is created");
+		// 从点队列中获取对应时间的点
+		var pointsQueue = lineRenderer.PointsQueue.ToList();
+		// 时间码的转化
+		// float judgetime = TimecodeTras.FromBpm(timeCode, 60);
+		// var count = TimecodeTras.ToFps(timeCode, 60);
+
+		Position = pointsQueue[frames]; //设置初始位置
+		GD.Print($"{Position}");
+		// _endPosition.X = Position.X;
+		// _endPosition.Y = 0;
 
 	}
 

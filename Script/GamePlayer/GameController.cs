@@ -75,14 +75,14 @@ namespace DremuGodot.Script.GamePlayer
             
             //Debug Code
             // 创建新的线渲染器并添加到节点
-            LineRenderer line = LineRenderer.newLineRenderer<LineRenderer>(lineRenderer);
-            line.SetLineRenderer(point);
-            AddChild(line);
+            GuideLines.Add(LineRenderer.newLineRenderer<LineRenderer>(lineRenderer));
+            GuideLines[0].SetLineRenderer(point);
+            AddChild(GuideLines[0]);
             // 创建新的Tap并添加到节点
             Tap _tap = Tap.newNote<Tap>(tap);
             _tap.Visible = true; //设置可见性
             AddChild(_tap);
-            _tap.InitNote(line, [1, 0, 4]);
+            _tap.InitNote(GuideLines[0], [1, 0, 1]);
 
             _tap.Connect("DestroyTap", new Callable(this, nameof(OnDestroyTap))); //连接摧毁Tap信号
 
@@ -91,7 +91,7 @@ namespace DremuGodot.Script.GamePlayer
             Drag _drag = Drag.newNote<Drag>(drag);
             _drag.Visible = true; //设置可见性
             AddChild(_drag);
-            _drag.InitNote(line, [1, 1, 4]);
+            _drag.InitNote(GuideLines[0], [1, 1, 4]);
 
             _drag.Connect("DestroyDrag", new Callable(this, nameof(OnDestroyDrag))); //连接摧毁Drag信号
 
@@ -100,7 +100,7 @@ namespace DremuGodot.Script.GamePlayer
             Flick _flick = Flick.newNote<Flick>(flick);
             _flick.Visible = true; //设置可见性
             AddChild(_flick);
-            _flick.InitNote(line, [1, 2, 4]);
+            _flick.InitNote(GuideLines[0], [1, 2, 4]);
 
             _flick.Connect("DestroyFlick", new Callable(this, nameof(OnDestroyFlick))); //连接摧毁Flick信号
         }
@@ -146,7 +146,14 @@ namespace DremuGodot.Script.GamePlayer
             if (item.Item1 == 0)
             {
                 //TODO:Tap的创建
+                GD.Print($"设置Tap的属性");
+                Taps[TapCount].Visible = true; //设置可见性
+                Taps[TapCount].InitNote(GuideLines[0], frames);
+                Taps[TapCount].Connect("DestroyTap", new Callable(this, nameof(OnDestroyTap))); //连接摧毁Tap信号
+                AddChild(Taps[TapCount]);
+                TapCount++;
             }
+            
         }
         /// <summary>
         /// 用于信号连接的函数
