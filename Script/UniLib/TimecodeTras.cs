@@ -24,5 +24,10 @@ public class TimecodeTras
         return totalFrames;
     }
     //TODO: 要把FramesCode（当前已经渲染的帧数）转化为节拍码
+    public static float BpmToTimecode(int bpm, List<int> BpmCode)
+    {
+        float T = 60 / (float)bpm;//spb
+        return (float)Math.Round(T * BpmCode[0] + T * BpmCode[1] / BpmCode[2], 2);
+    }
     
 }

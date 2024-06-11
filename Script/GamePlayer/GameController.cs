@@ -18,6 +18,7 @@ namespace DremuGodot.Script.GamePlayer
         [Export] public PackedScene tap;
         [Export] public PackedScene drag;
         [Export] public PackedScene flick;
+        [Export] public int DefaultFPS = 60;
 
         [Export] public Label NameLabel;
 
@@ -27,14 +28,19 @@ namespace DremuGodot.Script.GamePlayer
         // 静态时间码和实例
         public static float timecode;
         public static GameController Instance;
+        // 谱面数据
         public Root ChartData;
+        
         public List<LineRenderer> GuideLines = new List<LineRenderer>();
         public List<CoordinateController> Coordinates = new List<CoordinateController>();
         public List<Tap> Taps = new List<Tap>();
         public List<Drag> Drags = new List<Drag>();
         public List<Flick> Flicks = new List<Flick>();
         public Hashtable ActionHashTable = new Hashtable();
+        // 当前帧计数
         private int frames = 0;
+        private float NowTimeCode;
+        private int TapCount = 0;
         
         // 构造函数，实例化静态实例
         public GameController()
@@ -111,9 +117,8 @@ namespace DremuGodot.Script.GamePlayer
                     
                     foreach (var noteGroup in lineGroup.note)
                     {
-                        
-                        ActionHashTable.Add(noteGroup.time,(noteGroup.type,"AnotherArgument"));
-                        // 创建Note,0为Tap,1为Drag,2为Flick
+                        ActionHashTable.Add(TimecodeTras.BpmToTimecode(ChartData.DefaultBPM, noteGroup.time),(noteGroup.type,"AnotherArgument"));
+                        // 创建Note,0为Tap,1为Drag,2为Flick,3为Hold
                         if (noteGroup.type == 0)
                         {
                             Taps.Add(Tap.newNote<Tap>(tap));
@@ -132,10 +137,16 @@ namespace DremuGodot.Script.GamePlayer
             }
         }
 
-        // 创建Note
-        public void CreateNote()
+        /// <summary>
+        /// 创建Note
+        /// </summary>
+        /// <param name="nowTimeCode">当前的时间码</param>
+        public void CreateNote(float nowTimeCode,ValueTuple<int,string> item)
         {
-
+            if (item.Item1 == 0)
+            {
+                //TODO:Tap的创建
+            }
         }
         /// <summary>
         /// 用于信号连接的函数
@@ -169,6 +180,16 @@ namespace DremuGodot.Script.GamePlayer
         public override void _Process(double delta)
         {
             frames++;
+            //计算当前的时间码
+            NowTimeCode = (float)Math.Round((float)frames / DefaultFPS, 2);
+            if (ActionHashTable[NowTimeCode] != null)
+            {
+                CreateNote(NowTimeCode,(ValueTuple<int,string>)ActionHashTable[NowTimeCode]);
+            }
+
+            
+            // GD.Print(frames);
+            //  GD.Print(NowTimeCode);
             // GD.Print($"");
 
             // tap.update();
