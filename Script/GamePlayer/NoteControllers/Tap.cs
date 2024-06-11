@@ -33,33 +33,35 @@ public partial class Tap : Sprite2D, INote
 	/// 初始化Tap，只可以在代码中调用少量的次数，使用多了会出现效率问题
 	/// </summary>
 	/// <param name="lineRenderer">绑定的线渲染器</param>
-	/// <param name="timeCode">判定的时间，不是创建的时间</param>
-	public void InitNote(LineRenderer lineRenderer, List<int> timeCode)
+	/// <param name="BpmCode">判定的时间，不是创建的时间</param>
+	public void InitNote(LineRenderer lineRenderer, List<int> BpmCode)
 	{
 		// GD.Print("Tap is created");
 		// 从点队列中获取对应时间的点
 		var pointsQueue = lineRenderer.PointsQueue.ToList();
 		// 时间码的转化
-		float judgetime = TimecodeTras.FromBpm(timeCode, 60);
-		var count = TimecodeTras.ToFps(judgetime, 60);
+		float judgetime = TimecodeTras.FromBpmcodeToTimecode(BpmCode, 60);//debug:bpm=60
+		GD.Print("1:timecode is ",judgetime);
+		var count = TimecodeTras.FromTimecodeToFrames(judgetime, 60);//debug:fps=60
+		GD.Print("1:count is ",count);
 
 		Position = pointsQueue[count]; //设置初始位置
+		GD.Print($"{Position}");
 									   //设置结束的位置
 		// _endPosition.X = Position.X;
 		// _endPosition.Y = 0;
 
 	}
 	
-	public void InitNote(LineRenderer lineRenderer,int frames)
+	public void InitNote(LineRenderer lineRenderer,float timeCode)
 	{
-		// GD.Print("Tap is created");
 		// 从点队列中获取对应时间的点
 		var pointsQueue = lineRenderer.PointsQueue.ToList();
 		// 时间码的转化
-		// float judgetime = TimecodeTras.FromBpm(timeCode, 60);
-		// var count = TimecodeTras.ToFps(timeCode, 60);
-
-		Position = pointsQueue[frames]; //设置初始位置
+		GD.Print("2:timecode is ",timeCode);
+		var count = TimecodeTras.FromTimecodeToFrames(timeCode, 60);//debug:fps=60
+		GD.Print("2:count is ",count);
+		Position = pointsQueue[count]; //设置初始位置
 		GD.Print($"{Position}");
 		// _endPosition.X = Position.X;
 		// _endPosition.Y = 0;

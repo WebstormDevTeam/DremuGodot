@@ -13,7 +13,7 @@ public interface INote
     /// 
     /// </summary>
     /// <param name="lineRenderer"></param>
-    /// <param name="timecode"></param>
-    void InitNote(LineRenderer lineRenderer, List<int> timecode);
+    /// <param name="BpmCode"></param>
+    void InitNote(LineRenderer lineRenderer, List<int> BpmCode);
 
 }

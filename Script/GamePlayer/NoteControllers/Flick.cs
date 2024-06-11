@@ -38,8 +38,8 @@ public partial class Flick : Sprite2D
 		// 从点队列中获取对应时间的点
 		var pointsQueue = lineRenderer.PointsQueue.ToList();
 		// 时间码的转化
-		float judgetime = TimecodeTras.FromBpm(timeCode, 60);
-		var count = TimecodeTras.ToFps(judgetime, 60);
+		float judgetime = TimecodeTras.FromBpmcodeToTimecode(timeCode, 60);
+		var count = TimecodeTras.FromTimecodeToFrames(judgetime, 60);
 
 		Position = pointsQueue[count]; //设置初始位置
 		//设置结束的位置

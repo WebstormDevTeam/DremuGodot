@@ -18,7 +18,7 @@ namespace DremuGodot.Script.GamePlayer
         [Export] public PackedScene tap;
         [Export] public PackedScene drag;
         [Export] public PackedScene flick;
-        [Export] public int DefaultFPS = 60;
+        //[Export] public int DefaultFPS = 60;
 
         [Export] public Label NameLabel;
 
@@ -71,7 +71,6 @@ namespace DremuGodot.Script.GamePlayer
             //设置标题和难度
             NameLabel.Text = ChartData.Name + " " + ChartData.Hard;
             createElement();
-            GD.Print($"{ActionHashTable}");
             
             //Debug Code
             // 创建新的线渲染器并添加到节点
@@ -82,27 +81,27 @@ namespace DremuGodot.Script.GamePlayer
             Tap _tap = Tap.newNote<Tap>(tap);
             _tap.Visible = true; //设置可见性
             AddChild(_tap);
-            _tap.InitNote(GuideLines[0], [1, 0, 1]);
-
+            _tap.InitNote(GuideLines[0], [0, 1, 2]);
+            
             _tap.Connect("DestroyTap", new Callable(this, nameof(OnDestroyTap))); //连接摧毁Tap信号
-
-
-            // 创建新的Drag并添加到节点
-            Drag _drag = Drag.newNote<Drag>(drag);
-            _drag.Visible = true; //设置可见性
-            AddChild(_drag);
-            _drag.InitNote(GuideLines[0], [1, 1, 4]);
-
-            _drag.Connect("DestroyDrag", new Callable(this, nameof(OnDestroyDrag))); //连接摧毁Drag信号
-
-
-            // 创建新的Flick并添加到节点
-            Flick _flick = Flick.newNote<Flick>(flick);
-            _flick.Visible = true; //设置可见性
-            AddChild(_flick);
-            _flick.InitNote(GuideLines[0], [1, 2, 4]);
-
-            _flick.Connect("DestroyFlick", new Callable(this, nameof(OnDestroyFlick))); //连接摧毁Flick信号
+            
+            //
+            // // 创建新的Drag并添加到节点
+            // Drag _drag = Drag.newNote<Drag>(drag);
+            // _drag.Visible = true; //设置可见性
+            // AddChild(_drag);
+            // _drag.InitNote(GuideLines[0], [1, 1, 4]);
+            //
+            // _drag.Connect("DestroyDrag", new Callable(this, nameof(OnDestroyDrag))); //连接摧毁Drag信号
+            //
+            //
+            // // 创建新的Flick并添加到节点
+            // Flick _flick = Flick.newNote<Flick>(flick);
+            // _flick.Visible = true; //设置可见性
+            // AddChild(_flick);
+            // _flick.InitNote(GuideLines[0], [1, 2, 4]);
+            //
+            // _flick.Connect("DestroyFlick", new Callable(this, nameof(OnDestroyFlick))); //连接摧毁Flick信号
         }
 
         public void createElement()
@@ -117,7 +116,7 @@ namespace DremuGodot.Script.GamePlayer
                     
                     foreach (var noteGroup in lineGroup.note)
                     {
-                        ActionHashTable.Add(TimecodeTras.BpmToTimecode(ChartData.DefaultBPM, noteGroup.time),(noteGroup.type,"AnotherArgument"));
+                        ActionHashTable.Add(TimecodeTras.FromBpmcodeToTimecode(noteGroup.time, 60), noteGroup.type);//debug:bpm=60
                         // 创建Note,0为Tap,1为Drag,2为Flick,3为Hold
                         if (noteGroup.type == 0)
                         {
@@ -141,14 +140,15 @@ namespace DremuGodot.Script.GamePlayer
         /// 创建Note
         /// </summary>
         /// <param name="nowTimeCode">当前的时间码</param>
-        public void CreateNote(float nowTimeCode,ValueTuple<int,string> item)
+        /// <param name="item">Note数据</param>
+        public void CreateNote(float nowTimeCode,int type)
         {
-            if (item.Item1 == 0)
+            if (type== 0)
             {
                 //TODO:Tap的创建
-                GD.Print($"设置Tap的属性");
                 Taps[TapCount].Visible = true; //设置可见性
-                Taps[TapCount].InitNote(GuideLines[0], frames);
+                GD.Print(nowTimeCode);
+                Taps[TapCount].InitNote(GuideLines[0], nowTimeCode);
                 Taps[TapCount].Connect("DestroyTap", new Callable(this, nameof(OnDestroyTap))); //连接摧毁Tap信号
                 AddChild(Taps[TapCount]);
                 TapCount++;
@@ -188,10 +188,10 @@ namespace DremuGodot.Script.GamePlayer
         {
             frames++;
             //计算当前的时间码
-            NowTimeCode = (float)Math.Round((float)frames / DefaultFPS, 2);
+            NowTimeCode = (float)Math.Round((float)frames / 60, 2);//debug:fps=60
             if (ActionHashTable[NowTimeCode] != null)
             {
-                CreateNote(NowTimeCode,(ValueTuple<int,string>)ActionHashTable[NowTimeCode]);
+                CreateNote(NowTimeCode,(int)ActionHashTable[NowTimeCode]);
             }
 
             

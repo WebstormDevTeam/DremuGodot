@@ -31,15 +31,15 @@ public partial class Drag: Sprite2D, INote
 	/// 初始化Drag，只可以在代码中调用少量的次数，使用多了会出现效率问题
 	/// </summary>
 	/// <param name="lineRenderer">绑定的线渲染器</param>
-	/// <param name="timeCode">判定的时间，不是创建的时间</param>
-	public void InitNote(LineRenderer lineRenderer, List<int> timeCode)
+	/// <param name="BpmCode">判定的时间，不是创建的时间</param>
+	public void InitNote(LineRenderer lineRenderer, List<int> BpmCode)
 	{
 		// GD.Print("Drag is created");
 		// 从点队列中获取对应时间的点
 		var pointsQueue = lineRenderer.PointsQueue.ToList();
 		// 时间码的转化
-		float judgetime = TimecodeTras.FromBpm(timeCode, 60);
-		var count = TimecodeTras.ToFps(judgetime, 60);
+		float judgetime = TimecodeTras.FromBpmcodeToTimecode(BpmCode, 60);
+		var count = TimecodeTras.FromTimecodeToFrames(judgetime, 60);
 
 		Position = pointsQueue[count]; //设置初始位置
 		//设置结束的位置
