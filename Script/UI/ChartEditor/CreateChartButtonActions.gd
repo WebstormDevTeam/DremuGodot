@@ -14,10 +14,11 @@ var yamlDotNet = load("res://Script/UniLib/yamlExtension.cs")
 
 var _Path
 var _SystemPath
+var _MusicPath
 var ChartData
 
 
-signal NewOrOpenFile
+signal NewFile
 
 # 当节点第一次进入场景树时调用
 func _ready():
@@ -62,15 +63,17 @@ func _open_music_file():
 	file_dialog.connect("file_selected", Callable(self, "_music_file_selected"))
 	add_child(file_dialog)
 	file_dialog.popup_centered(Vector2(1000,900))
+	
 
 
 func _music_file_selected(path):
 	# 显示选中的音乐文件路径
-	PathLabel.text = str(path)
-	print("Selected music file: " + path)
 	var file_type_chars = path.right(4)
+	_MusicPath=path
+	PathLabel.text = str(_MusicPath)
+	print("Selected music file: " + _MusicPath)
 	# 播放音频文件
-	var MusicFile = FileAccess.open(path,FileAccess.READ)
+	var MusicFile = FileAccess.open(_MusicPath,FileAccess.READ)
 	var stream
 	if(file_type_chars==".mp3"):
 		stream = AudioStreamMP3.new()
@@ -81,6 +84,8 @@ func _music_file_selected(path):
 	stream.data = MusicFile.get_buffer(MusicFile.get_length())
 	MusicPlayer.stream = stream
 	EVarible.MusicStream = stream
+	EVarible.MusicLength = EVarible.MusicStream.get_length()
+	print(EVarible.MusicLength)
 	MusicPlayer.play()
 
 # 保存文件
@@ -89,6 +94,7 @@ func _save_file(path):
 	yamlDotNet.Test()
 	# 构建音乐信息的字典数据
 	ChartData = {
+		"MusicPath":_MusicPath,
 		"MusicName":_MusicName.text,
 		"ChartName":_ChartName.text,
 		"ArtistName":_ArtistName.text,
@@ -135,11 +141,12 @@ func _on_create_button_down():
 			_SystemPath = "/Users/"+username+"/"
 			file_dialog.set_current_dir(_SystemPath+"Music")
 		
-	# 当文件被选中时调用_save_file函数
+	# 当文件被选中时，连接OK按钮和_save_file函数，使其可用
 	file_dialog.connect("file_selected", Callable(self, "_save_file"))
 	add_child(file_dialog)
 	file_dialog.popup_centered(Vector2(1000,900))
-	emit_signal("NewOrOpenFile")
+	
+	emit_signal("NewFile")
 
 # 点击取消按钮时调用
 func _on_cancel_button_down():

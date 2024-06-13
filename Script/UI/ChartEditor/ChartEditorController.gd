@@ -14,6 +14,7 @@ var ChartData
 var n = 4
 var BeatLines = []
 var SongLong
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var pop = $Panel/MenuBar/MenuButton.get_popup()
@@ -21,15 +22,13 @@ func _ready():
 	codeEdit = $Panel/CodeEdit
 	codeEdit.code_completion_prefixes = codePreFixes
 	codeEdit.add_code_completion_option(CodeEdit.KIND_VARIABLE,"Chart","Chart: ")
-	
-	add_beat_line()
-	print(EVarible.bpm)
 	pass
 
 func _on_menu_item_pressed(id):
 	match id:
 		0:
 			var dialog = CreateDialogPrefeb.instantiate()
+			dialog.connect("NewFile",Callable(self,"_on_new_file"))
 			dialog.z_index = 20
 			$Panel.add_child(dialog)
 		1:
@@ -39,21 +38,18 @@ func _on_menu_item_pressed(id):
 func _process(delta):
 	pass
 
-func _on_open():
-	print("opened")
-
 
 func add_beat_line():
 	beatMap.add_theme_constant_override("separation",200/n)
-	connect("NewOrOpenFile",Callable(self,"_on_open"))
 	#beatMap.add_spacer(true)
-	for i in range(10):
+	var beatLineNumbers:int = (EVarible.MusicLength*60*EVarible.DefaultNoteLength/EVarible.bpm)
+	print(beatLineNumbers)
+	for i in range(beatLineNumbers):
 		var line = ColorRect.new()
 		line.custom_minimum_size = Vector2(200,2)#添加节拍线
 		#四个节拍线把节拍线的颜色改变
 		if i%4 == 0:
 			line.color = Color(0.34,0.36,0.39)
-			print(line.color)
 		beatMap.add_child(line)
 		BeatLines.append(line)
 	pass
@@ -96,11 +92,24 @@ func _open_chart_file(path):
 	_Path = path
 	var File = FileAccess.open(path,FileAccess.READ_WRITE)
 	ChartData = JSON.parse_string(yamlDotNet.ConvertYamlToJson(File.get_as_text()))
+	File.close()
 	EVarible.bpm = int(ChartData["DefaultBPM"])
-	print(ChartData)
+	var MusicFile = FileAccess.open(ChartData["MusicPath"],FileAccess.READ)
+	var stream = AudioStreamMP3.new()
+	stream.data = MusicFile.get_buffer(MusicFile.get_length())
+	MusicFile.close()
+	audioPlayer.stream = stream
+	EVarible.MusicStream = stream
+	EVarible.MusicLength = EVarible.MusicStream.get_length()
+	print(EVarible.MusicLength)
 	
-	pass
-
+	print("opened")
+	add_beat_line()
+	
+func _on_new_file():
+	print("newed")
+	add_beat_line()
+	
 func _on_code_text_Changed():
 	pass
 

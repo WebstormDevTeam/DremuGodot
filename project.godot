@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="DremuGodot"
-run/main_scene="res://Scene/GamePlayer.tscn"
+run/main_scene="res://Scene/ChartEditor/ChartEditor.tscn"
 config/features=PackedStringArray("4.2", "C#", "Mobile")
 config/icon="res://icon.svg"
 
