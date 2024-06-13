@@ -23,6 +23,8 @@ public partial class LineRenderer : Line2D
 	private int n = 0;
 	// 当前曲线组成的列表
 	public List<List<Vector2>> ThisCurves;
+	//已经下落的像素数
+	public int PixelCount = 0;
 
 	// 泛型方法，用于实例化 LineRenderer 对象
 	public static T newLineRenderer<T>(PackedScene lineRendererPackedScene) where T : class
@@ -87,6 +89,7 @@ public partial class LineRenderer : Line2D
 			if (points[i].Y > 0)
 			{
 				LastPoint = PointsQueue.Dequeue();
+				PixelCount++;
 			}
 		}
 
