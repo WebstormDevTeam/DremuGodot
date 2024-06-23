@@ -25,8 +25,8 @@ lineRenderer = ExtResource("3_5s5pv")
 tap = ExtResource("4_a35ia")
 drag = ExtResource("5_u4kna")
 flick = ExtResource("6_h8mrg")
-isAutoPlay = true
 NameLabel = NodePath("../UI/NameAndLevel")
+isAutoPlay = true
 
 [node name="Coordinate" type="Node2D" parent="GameController"]
 script = ExtResource("3_6en3d")

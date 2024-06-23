@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DremuGodot.Script.UniLib;
+using GdUnit4;
 using Godot;
 
 namespace DremuGodot.Script.GamePlayer.GuideLine;
@@ -25,10 +26,11 @@ public partial class LineRenderer : Line2D
 	public List<List<Vector2>> ThisCurves;
 	//已经下落的像素数
 	public int PixelCount = 0;
-
+	
 	// 泛型方法，用于实例化 LineRenderer 对象
 	public static T newLineRenderer<T>(PackedScene lineRendererPackedScene) where T : class
 	{
+		
 		return lineRendererPackedScene.Instantiate() as T;
 	}
 	/// <summary>
